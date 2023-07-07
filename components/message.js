@@ -52,9 +52,9 @@ const MessageBox = ({ mode, message }) => {
 
     return (
         <div
-            className={`flex flex-row ${mode == "user" ? "bg-user" : "bg-computer"} w-full px-[4rem] md:px-[10rem] py-[1.24rem] min-h-[104px] justify-between`}
+            className={`flex flex-row ${mode == "user" ? "bg-user" : "bg-computer"} w-full px-[1rem] md:px-[10rem] py-[1.24rem] min-h-[104px] justify-between`}
         >
-            <div className='min-w-[60px] relative'>
+            <div className='min-w-[30px] md:min-w-[60px] relative'>
                 <div className='rounded-md overflow-hidden'>
                     <Image alt='.' src={mode == "computer" ? "/hat.jpg" : "/you.jpg"} width={60} height={50} />
                 </div>
@@ -64,12 +64,13 @@ const MessageBox = ({ mode, message }) => {
                     </div>
                 )}
             </div>
-            <div className='mx-[2rem] box-border flex flex-col whitespace-pre-wrap break-words flex justify-start w-full'>
+
+            <div className='mx-[0.8rem] md:mx-[2rem] box-border flex flex-col whitespace-pre-wrap break-words flex justify-start w-full'>
                 {cursor != payload.length && <span className='text-xs text-white'>{think}</span>}
                 <span className={`text-md text-gray-700 font-semibold  ${cursor != payload.length && "blinking-cursor"}`}>{payload.slice(0, cursor)}</span>
             </div>
 
-            <div className='min-w-[60px]'>
+            <div className='min-w-[30px] md:min-w-[60px]'>
                 {/* {cursor != payload.length} */}
                 {mode == "computer" && (
                     <>

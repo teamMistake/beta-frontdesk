@@ -57,6 +57,7 @@ export default function Home() {
         const stream = fetch("/api/generate", { body: JSON.stringify(data), method: "POST", signal: controller.signal })
             .then((response) => ndjsonStream(response.body))
             .then((stream) => {
+                clearTimeout(timeoutId)
                 const streamReader = stream.getReader();
                 streamReader.read().then(async (response) => {
                     while (!response || !response.done) {
@@ -127,8 +128,8 @@ export default function Home() {
                             <Image alt='appicon' src={"/app_icon.jpg"} width={200} height={200} />
                         </div>
 
-                        <div className='mt-5 flex flex-row gap-2 animate-bounce text-etc text-sm'>
-                            Copyright 2023 ©{" "}
+                        <div className='mt-5 flex flex-col md:flex-row flex-row gap-2 animate-bounce text-etc text-sm break-all '>
+                            Copyright 2023 ©{"\n"}
                             <Link href='https://github.com/teamMistake'>
                                 <p className='cursor-pointer font-bold text-md'>Sema R&E teamMistake</p>
                             </Link>
@@ -175,9 +176,10 @@ export default function Home() {
                             </button>
                         )}
                         <form onKeyDown={enterSubmit} className='flex w-full justify-center ' onSubmit={handleSubmit(onSubmit)}>
-                            <div className='w-[90%] max-w-[48rem] flex flex-col justify-center align-center items-center bg-white  rounded-xl shadow-xl'>
-                                <div className='pl-[1rem] pr-[0.4rem] py-[0.75rem] w-full relative flex flex-row'>
+                            <div className='relative w-[90%] max-w-[48rem] flex flex-col justify-center align-center items-center bg-white  rounded-xl shadow-xl'>
+                                <div className='pl-[1rem] pr-[0.4rem] pt-[0.75rem] pb-[1.2rem] w-full relative flex flex-row'>
                                     <textarea
+                                        maxLength={200}  
                                         onKeyPress={enterSubmit}
                                         {...register("prompt", { required: true })}
                                         className='resize-none  border-box border-none outline-none w-full text-gray-600 leading-[1.5rem] align-middle overflow-hidden bg-white'
@@ -188,7 +190,10 @@ export default function Home() {
                                         <Image alt='sendbutton' src='/send.png' width={40} height={40} />
                                     </button>
                                 </div>
-                                {errors.command && <span className='pl-2 text-sm text-green-900 font-bold'>무언가를 입력해주세요.</span>}
+                                <div className="absolute left-4 bottom-[3px] text-gray-600 font-thin text-sm">
+                                  <span>{watch("prompt") ? watch("prompt").length :0}/200</span>
+                                </div>
+                                {/* {errors.command && <span className='pl-2 text-sm text-green-900 font-bold'>무언가를 입력해주세요.</span>} */}
                             </div>
                         </form>
 
