@@ -58,15 +58,15 @@ const MessageBox = ({ mode, message }) => {
                 <div className='rounded-md overflow-hidden'>
                     <Image alt='.' src={mode == "computer" ? "/hat.jpg" : "/you.jpg"} width={60} height={50} />
                 </div>
-                {cursor != payload.length && (
+                {(mode=="computer" && cursor != payload.length) && (
                     <div className='absolute top-1 right-[10px]'>
-                        <Image src='/spinner.png' className='animate-spin' width={40} height={40} />
+                        <Image alt="spinner" src='/spinner.png' className='animate-spin' width={40} height={40} />
                     </div>
                 )}
             </div>
 
             <div className='mx-[0.8rem] md:mx-[2rem] box-border flex flex-col whitespace-pre-wrap break-words flex justify-start w-full'>
-                {cursor != payload.length && <span className='text-xs text-white'>{think}</span>}
+                {(mode=="computer" && cursor != payload.length) && <span className='text-xs text-white'>{think}</span>}
                 <span className={`text-md text-gray-700 font-semibold  ${cursor != payload.length && "blinking-cursor"}`}>{payload.slice(0, cursor)}</span>
             </div>
 
