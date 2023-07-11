@@ -79,7 +79,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-      if (!error) return 
+      if (!error) return
       scrollToBottom()
       const timeout = setTimeout(() => {
         setLoading(false)
@@ -179,7 +179,7 @@ export default function Home() {
                             <div className='relative w-[90%] max-w-[48rem] flex flex-col justify-center align-center items-center bg-white  rounded-xl shadow-xl'>
                                 <div className='pl-[1rem] pr-[0.4rem] pt-[0.75rem] pb-[1.2rem] w-full relative flex flex-row'>
                                     <textarea
-                                        maxLength={200}  
+                                        maxLength={200}
                                         onKeyPress={enterSubmit}
                                         {...register("prompt", { required: true })}
                                         className='resize-none  border-box border-none outline-none w-full text-gray-600 leading-[1.5rem] align-middle overflow-hidden bg-white'

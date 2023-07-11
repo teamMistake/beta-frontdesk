@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 const metadata = {
     title: "모자와 대화해봐요.",
@@ -20,6 +21,10 @@ const metadata = {
 export default function RootLayout({ children }) {
     return (
         <>
+            <div className="my-3">
+                <Link className="font-bold mx-7" href="/">Chat</Link>
+                <Link className="font-bold" href="/rank">Rank</Link>
+            </div>
             <Head>
                 <title>모자와 대화해봐요. Chat with MOJA.</title>
                 <meta description="2023 R&E Project by 물실 소프트웨어 엔지니어 일동" />
@@ -38,7 +43,7 @@ export default function RootLayout({ children }) {
                 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
                 <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png" />
             </Head>
-            {children}  
+            {children}
             </>
     );
 }
